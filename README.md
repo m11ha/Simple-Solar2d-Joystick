@@ -15,7 +15,7 @@ A simple joystick for Solar2d projects
         
  or
  
-        joystick('Name of listener', listener)
+        joystick('Name of event', listener)
 ## Options
 
 | Name | Description | Default value |
