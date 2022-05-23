@@ -27,3 +27,9 @@ A simple joystick for Solar2d projects
 | bulbImage | The foreground image | If not set, use  bulbrFeel and bulbStroke |
 | bcgrFill, bcgrStroke, bulbFill, bulbStroke | Paint colors | Fill colors is black, stroke colors is white. The background fill color is transparent |
 | eventName | Name of custom event | 'Control' |
+| focusable | If need multitouch, must be false | true |
+
+## Event
+
++ __event.angle__ Angle in radians 
++ __event.modul__ Normalized slope value
