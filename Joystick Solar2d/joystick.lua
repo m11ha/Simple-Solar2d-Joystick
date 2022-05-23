@@ -1,43 +1,40 @@
 local joystick={}
 
 
-
 function joystick:create(options)
 	local obj={}
 	setmetatable( obj, self )
 	self.__index=self
 
-
-
 	obj.outerRadius=options.outerRadius or 30 
 	obj.innerRadius= options.innerRadius or 20
 	obj.maxDiistance=obj.outerRadius*3
 	obj.x= options.x or obj.outerRadius+obj.innerRadius+20
-	obj.y= options.y or display.contentHeight- obj.outerRadius+obj.innerRadius
+	obj.y= options.y or display.contentHeight- obj.outerRadius-obj.innerRadius
 	obj.bulbImage=options.bulbImage
 	obj.bcgrImage=options.bcgrImobj
 	obj.isActive=false
 	obj.isAvailable=true
 	obj.focusable=options.focusable or true
-	obj.bcgrFeel=options.bcgrFeel or {}
+	obj.bcgrFill=options.bcgrFeel or {}
 	obj.bcgrStroke=options.bcgrStroke or {}
-	obj.bulbFeel=options.bulbFeel or {}
+	obj.bulbFill=options.bulbFeel or {}
 	obj.bulbStroke=options.bulbStroke or {}
 	obj.eventName=options.eventName or 'Control'
 
-	setmetatable( obj.bcgrFeel,obj.bcgrFeel )
+	setmetatable( obj.bcgrFill,obj.bcgrFill )
 	setmetatable( obj.bcgrStroke,obj.bcgrStroke )
-	setmetatable( obj.bulbFeel,obj.bulbFeel)
+	setmetatable( obj.bulbFill,obj.bulbFill)
 	setmetatable( obj.bulbStroke,obj.bulbStroke)
 	
-	local bcgrFeelProto= {red=0,green=0,blue=0,alpha=0} 
+	local bcgrFillProto= {red=0,green=0,blue=0,alpha=0} 
 	local bcgrStrokeProto= {red=1,green=1,blue=1,alpha=0.5,width=2} 
-	local bulbFeelProto={red=0,green=0,blue=0,alpha=1} 
+	local bulbFillProto={red=0,green=0,blue=0,alpha=1} 
 	local bulbStrokeProto= {red=1,green=1,blue=1,alpha=0.5, width=2}
 
-	obj.bcgrFeel.__index=bcgrFeelProto
+	obj.bcgrFill.__index=bcgrFillProto
 	obj.bcgrStroke.__index=bcgrStrokeProto
-	obj.bulbFeel.__index=bulbFeelProto
+	obj.bulbFill.__index=bulbFillProto
 	obj.bulbStroke.__index=bulbStrokeProto
 
 	return obj
@@ -112,8 +109,8 @@ function joystick:show()
 	if(self.bcgrImage == nil) then
 		outer=display.newCircle(  self.x, self.y, self.outerRadius )
 		
-		outer:setFillColor(self.bcgrFeel.red,self.bcgrFeel.green,
-			self.bcgrFeel.blue,self.bcgrFeel.alpha)
+		outer:setFillColor(self.bcgrFill.red,self.bcgrFill.green,
+			self.bcgrFill.blue,self.bcgrFill.alpha)
 		outer:setStrokeColor( self.bcgrStroke.red, self.bcgrStroke.green,
 			self.bcgrStroke.blue,self.bcgrStroke.alpha )
 		outer.strokeWidth=self.bcgrStroke.width
@@ -124,8 +121,8 @@ function joystick:show()
 	if(self.bulbImage == nil) then
 		self.bulb=display.newCircle(  self.x, self.y, self.innerRadius )
 		
-		self.bulb:setFillColor(self.bulbFeel.red,self.bulbFeel.green,
-			self.bulbFeel.blue,self.bulbFeel.alpha)
+		self.bulb:setFillColor(self.bulbFill.red,self.bulbFill.green,
+			self.bulbFill.blue,self.bulbFill.alpha)
 		self.bulb:setStrokeColor( self.bulbStroke.red, self.bulbStroke.green,
 			self.bulbStroke.blue,self.bulbStroke.alpha )
 		self.bulb.strokeWidth=self.bulbStroke.width
